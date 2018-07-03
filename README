@@ -1,10 +1,28 @@
 =======================================================================
 @SpringBootApplication
 =======================================================================
-Consists of the following three annotations
--@EnableAutoConfiguration
--@ComponentScan
--@Configuration
+This annotation is used on the application class while setting up a Spring Boot project. 
+The class that is annotated with the @SpringBootApplication must be kept in the base package. 
+The one thing that the @SpringBootApplication does is a component scan. But it will scan only its sub-packages. 
+As an example, if you put the class annotated with @SpringBootApplication in com.example then @SpringBootApplication will 
+scan all its sub-packages, such as com.example.a, com.example.b, and com.example.a.x.
+
+The @SpringBootApplication is a convenient annotation that adds all the following:
+
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+
+
+
+=======================================================================
+@EnableAutoConfiguration
+=======================================================================
+This annotation is usually placed on the main application class. 
+The @EnableAutoConfiguration annotation implicitly defines a base “search package”. 
+This annotation tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+In short it enables Auto Configuration.
+
 
 
 
@@ -118,3 +136,48 @@ To Create executable JARs with Maven we need the "spring-boot-maven-plugin"
 -add the spring-boot-maven-plugin to your pom
 -Run mvn clean package
 - JAR is created under target folder.
+
+
+
+
+=======================================================================
+How Component Scan Works in Spring boot
+=======================================================================
+https://springframework.guru/spring-component-scan/
+
+
+
+=======================================================================
+ Externalized Configuration
+=======================================================================
+Spring Boot uses a very particular PropertySource order that is designed to allow sensible overriding of values. Properties are considered in the following order:
+
+1.Devtools global settings properties on your home directory (~/.spring-boot-devtools.properties when devtools is active).
+2.@TestPropertySource annotations on your tests.
+3.@SpringBootTest#properties annotation attribute on your tests.
+4.Command line arguments.
+5.Properties from SPRING_APPLICATION_JSON (inline JSON embedded in an environment variable or system property).
+6.ServletConfig init parameters.
+7.ServletContext init parameters.
+8.JNDI attributes from java:comp/env.
+9.Java System properties (System.getProperties()).
+10.OS environment variables.
+11.A RandomValuePropertySource that has properties only in random.*.
+12.Profile-specific application properties outside of your packaged jar (application-{profile}.properties and YAML variants).
+13.Profile-specific application properties packaged inside your jar (application-{profile}.properties and YAML variants).
+14.Application properties outside of your packaged jar (application.properties and YAML variants).
+15.Application properties packaged inside your jar (application.properties and YAML variants).
+16.@PropertySource annotations on your @Configuration classes.
+17.Default properties (specified by setting SpringApplication.setDefaultProperties).
+
+
+=======================================================================
+ Externalized Configuration - The Old way - @Value
+=======================================================================
+
+
+
+
+=======================================================================
+ Externalized Configuration - The new way - @ConfigurationProperties
+=======================================================================
