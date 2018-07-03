@@ -106,3 +106,15 @@ https://www.mkyong.com/spring-boot/spring-boot-custom-banner-example/
 banner creator
 --------------
 https://devops.datenkollektiv.de/banner.txt/index.html
+
+
+
+
+
+=======================================================================
+Creating Executable JAR with Maven
+=======================================================================
+To Create executable JARs with Maven we need the "spring-boot-maven-plugin"
+-add the spring-boot-maven-plugin to your pom
+-Run mvn clean package
+- JAR is created under target folder.
