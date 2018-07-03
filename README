@@ -106,6 +106,12 @@ server:
     port: 8080
     contextPath: /context-path
 	
+Different ways od changing context path
+-----------------------------------------
+http://www.baeldung.com/spring-boot-context-path
+	
+	
+	
 	
 =======================================================================
 Custom favicon for Springboot application
