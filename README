@@ -1,0 +1,108 @@
+=======================================================================
+@SpringBootApplication
+=======================================================================
+Consists of the following three annotations
+-@EnableAutoConfiguration
+-@ComponentScan
+-@Configuration
+
+
+
+=======================================================================
+Running Spring boot Application - Different ways
+=======================================================================
+Running as a Packaged Application
+-----------------------------------
+If you use the Spring Boot Maven or Gradle plugins to create an executable jar, you can run your application using java -jar, 
+as shown in the following example:
+
+$ java -jar target/myapplication-0.0.1-SNAPSHOT.jar
+
+It is also possible to run a packaged application with remote debugging support enabled. 
+Doing so lets you attach a debugger to your packaged application, as shown in the following example:
+
+$ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
+       -jar target/myapplication-0.0.1-SNAPSHOT.jar
+	   
+	   
+Using the Maven Plugin
+-------------------------
+The Spring Boot Maven plugin includes a run goal that can be used to quickly compile and run your application. 
+Applications run in an exploded form, as they do in your IDE. The following example shows a typical Maven command to run a Spring Boot application:
+
+$ mvn spring-boot:run
+You might also want to use the MAVEN_OPTS operating system environment variable, as shown in the following example:
+
+$ export MAVEN_OPTS=-Xmx1024m
+
+
+Using the Gradle Plugin
+--------------------------------
+The Spring Boot Gradle plugin also includes a bootRun task that can be used to run your application in an exploded form. 
+The bootRun task is added whenever you apply the org.springframework.boot and java plugins and is shown in the following example:
+
+$ gradle bootRun
+You might also want to use the JAVA_OPTS operating system environment variable, as shown in the following example:
+
+$ export JAVA_OPTS=-Xmx1024m
+
+
+
+
+
+=======================================================================
+Generate Auto Config Report
+=======================================================================
+Use --debug as program arguments to view the Auto Configuration Report
+		// 1. Run as Configuration
+		// 2. "--debug" as program Arguments
+		// 3. Run the app to show AutoConfig eport on Console
+		
+		
+
+=======================================================================		
+Printing all the beans (including user defined) on the console
+=======================================================================
+		ApplicationContext ctx = SpringApplication.run(SpringbootFeaturesApplication.class, args);
+		
+		String[] beanNames = ctx.getBeanDefinitionNames();
+		Arrays.sort(beanNames);
+		for(String name : beanNames) {
+			System.out.println(name);
+		}
+
+		
+		
+=======================================================================		
+Change Server Port or Root Context Path
+=======================================================================
+in .properties file
+--------------------
+server.port = 8080
+server.contextPath = /context-path
+
+
+in .yml file
+-------------
+server:
+    port: 8080
+    contextPath: /context-path
+	
+	
+=======================================================================
+Custom favicon for Springboot application
+=======================================================================
+https://viralpatel.net/blogs/spring-boot-custom-favicon-example/
+
+
+
+
+
+=======================================================================
+Custom Starter Banner for Springboot application
+=======================================================================
+https://www.mkyong.com/spring-boot/spring-boot-custom-banner-example/
+
+banner creator
+--------------
+https://devops.datenkollektiv.de/banner.txt/index.html
