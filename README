@@ -1,3 +1,5 @@
+https://github.com/eugenp/tutorials/tree/master/spring-boot
+
 =======================================================================
 @SpringBootApplication
 =======================================================================
@@ -180,10 +182,44 @@ Spring Boot uses a very particular PropertySource order that is designed to allo
 =======================================================================
  Externalized Configuration - The Old way - @Value
 =======================================================================
+Create a class as following:
+-------------------------------------
+@Configuration
+// Load specific props file. By Default it is "application.properties" if this annotation 
+//is not provided.
+@PropertySource("classpath:mysource.properties")
+public class ClientConfig {
+	@Value( "${client.name}" )
+	private String clientName;
+	@Value( "${client.stream}" )
+	private String clientStream;
+	@Value( "${client.age:Ten}" ) // Default value "Ten" when the property is not found
+	private String clientAge;
 
+
+More Details
+--------------
+http://www.baeldung.com/properties-with-spring
 
 
 
 =======================================================================
  Externalized Configuration - The new way - @ConfigurationProperties
 =======================================================================
+https://www.mkyong.com/spring-boot/spring-boot-configurationproperties-example/
+
+http://www.baeldung.com/properties-with-spring
+
+
+
+=======================================================================
+Injecting Environment variables in Springboot Application
+=======================================================================
+import org.springframework.core.env.Environment;
+
+// Injecting Environment
+@Autowired
+private Environment env;
+
+// Get a specific value from environment
+env.getProperty("JAVA_HOME")

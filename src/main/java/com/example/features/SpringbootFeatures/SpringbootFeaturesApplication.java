@@ -2,14 +2,22 @@ package com.example.features.SpringbootFeatures;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
+
+import com.example.features.SpringbootFeatures.ext.properties.AppProperties;
+import com.example.features.SpringbootFeatures.ext.properties.ClientConfig;
 
 @SpringBootApplication
 public class SpringbootFeaturesApplication {
-
+	 
+	
 	public static void main(String[] args) {
+		   
+
 		//SpringApplication.run(SpringbootFeaturesApplication.class, args);
 		ApplicationContext ctx = SpringApplication.run(SpringbootFeaturesApplication.class, args);
 	
@@ -20,11 +28,15 @@ public class SpringbootFeaturesApplication {
 			System.out.println(name);
 		}
 	
+		// Get specific bean
+		ClientConfig cc = ctx.getBean(ClientConfig.class);
+		System.out.println(cc.toString());
+		cc.printEnvVariables();
 		
-		// Use --debug as program arguments to view the Auto Configuration Report
-		// 1. Run as Configuration
-		// 2. "--debug" as program Arguments
-		// 3. Run the app to show AutoConfig eport on Console
+
+		// Get specific bean
+		AppProperties ap = ctx.getBean(AppProperties.class);
+		System.out.println(ap.toString());
 	}
 	
 	
